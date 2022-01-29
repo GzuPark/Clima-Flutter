@@ -69,5 +69,8 @@
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
+# Flutter 2.8.1
+.flutter-plugins-dependencies
+
 # Environment variable
 .env
