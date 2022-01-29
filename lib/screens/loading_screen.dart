@@ -1,5 +1,7 @@
 import 'package:clima/services/location.dart';
+import 'package:clima/services/networking.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -7,20 +9,27 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  void getLocation() async {
+  double? latitude;
+  double? longitude;
+  final String apiKey = dotenv.env['API_KEY'].toString();
+
+  void getLocationData() async {
     Location location = Location();
 
     await location.getCurrentPosition();
-    // ignore: avoid_print
-    print(location.latitude);
-    // ignore: avoid_print
-    print(location.longitude);
+    latitude = location.latitude;
+    longitude = location.longitude;
+
+    String url = 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey';
+
+    NetworkHelper networkHelper = NetworkHelper(url: url);
+    var weatherData = await networkHelper.getData();
   }
 
   @override
   void initState() {
     super.initState();
-    getLocation();
+    getLocationData();
   }
 
   @override

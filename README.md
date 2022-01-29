@@ -7,6 +7,15 @@
 
 The objective of this tutorial is to learn about asynchronous programming in Dart. We'll look at how to carry out time consuming tasks such as getting device location and networking to get data from the internet. 
 
+## Prerequisite
+- Use environment file to store API key due to keep private :)
+- Install the [flutter_dotenv](https://pub.dev/packages/flutter_dotenv) package
+- Create `.env` file and add to assets in the `pubspec.yaml` file
+
+    ```sh
+    API_KEY=  # Use yours
+    ```
+
 
 ## What you will create
 
